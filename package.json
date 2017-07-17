@@ -1,0 +1,22 @@
+{
+  "name": "mean",
+  "version": "1.0.0",
+  "description": "MEAN application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\t\t"
+  },
+  "keywords": [
+    "MEAN"
+  ],
+  "author": "Rody Arantes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "grunt": "^1.0.1"
+  }
+}
