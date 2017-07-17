@@ -1,19 +1,8 @@
-var express = require("express");
+
+process.env.NODE_ENV = process.env.NODE_ENV  || 'development';
+
+var express = require("./config/express");
 var app = express();
-
-app.use(function(req, res, next){
-  console.log(req.method, req.url);
-  next();
-});
-app.use("/testicle", function(req, res, next){
-  res.setHeader("Content-Type", "text/html");
-  res.end("TESTICLE");
-});
-app.use("/", function(req, res, next){
-  res.setHeader("Content-Type", "text/html");
-  res.end("HOME");
-});
 app.listen(3000);
-console.log("Listening on: http://localhost:3000")
-
 module.exports = app;
+console.log("Listening on: http://localhost:3000")

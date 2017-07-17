@@ -16,7 +16,10 @@
   "author": "Rody Arantes",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
     "express": "^4.15.3",
-    "grunt": "^1.0.1"
+    "method-override": "^2.3.9",
+    "morgan": "^1.8.2"
   }
 }
