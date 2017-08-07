@@ -1,11 +1,36 @@
 exports.render = function(req, res){
-  if(req.session.lastVisit){
-    console.log(req.session.lastVisit);
-  }
-
-  req.session.lastVisit = new Date();
-  
   res.render("index", {
-    title: "DEMO PURPOSES"
-  })
-};
+    title: "Hello World",
+    userFullName: req.user ? req.user.fullName : ""
+  });
+}
+exports.saveOAuthUserProfile = function(req, profile, done){
+  User.findOne({
+    provider: profile.provider,
+    providerId: profile.providerId
+  }, function(err, user){
+    if(err){
+      return done(err);
+    }
+    else{
+      if(!user){
+        var possibleUsername = profile.username || ((profile.email) ? profile.email.split("@")[0] : "");
+        User.findUniqueUsername(possibleUsername, null, function(availableUsername){
+          profile.username = availableUsername;
+          user = new User(profile);
+          user.save(function(err){
+            if(err){
+              var message = _this.getErrorMessage(err);
+              req.flash("error", message);
+              return res.redirect("/signup");
+            }
+            return done(err, user);
+          });
+        });
+      }
+      else{
+        return done(err, user);
+      }
+    }
+  });
+}
